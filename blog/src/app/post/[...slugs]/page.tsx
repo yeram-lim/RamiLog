@@ -48,6 +48,7 @@ const Post = async ({ params }) => {
           <div>{dateString}</div>
         </div>
       </div>
+      <MdxContent source={serialized}></MdxContent>
     </section>
   );
 };
