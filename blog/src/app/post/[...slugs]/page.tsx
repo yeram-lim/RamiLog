@@ -7,6 +7,7 @@ import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkBreaks from "remark-breaks";
 
 type Frontmatter = {
   title: string;
@@ -33,7 +34,7 @@ export const getPostBySlug = async (
   const serialized = await serialize(source, {
     parseFrontmatter: true,
     mdxOptions: {
-      remarkPlugins: [remarkGfm],
+      remarkPlugins: [remarkGfm, remarkBreaks],
       rehypePlugins: [
         [rehypePrettyCode, { theme: "slack-dark" }],
         rehypeSlug,
