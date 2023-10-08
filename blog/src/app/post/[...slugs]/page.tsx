@@ -5,6 +5,8 @@ import { type MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MdxContent } from "../../../../components/MdxContent";
 import remarkGfm from "remark-gfm";
 import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 type Frontmatter = {
   title: string;
@@ -32,7 +34,18 @@ export const getPostBySlug = async (
     parseFrontmatter: true,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
-      rehypePlugins: [[rehypePrettyCode, { theme: "slack-dark" }]],
+      rehypePlugins: [
+        [rehypePrettyCode, { theme: "slack-dark" }],
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            properties: {
+              className: ["anchor"],
+            },
+          },
+        ],
+      ],
     },
   });
 
