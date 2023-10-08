@@ -1,42 +1,53 @@
-// "use client";
-
 import path from "path";
 import fs from "fs";
-import { compileMDX } from "next-mdx-remote/rsc";
+import { serialize } from "next-mdx-remote/serialize";
+import { type MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MdxContent } from "../../../../components/MdxContent";
 
-export const getPostBySlug = async (slugs: string) => {
-  // const POSTS_PATH = path.join(process.cwd(), "/contents");
-  // console.log("process.cwd()", process.cwd());
+type Frontmatter = {
+  title: string;
+  date: Date;
+};
+
+type PostType<TFrontmatter> = {
+  serialized: MDXRemoteSerializeResult;
+  frontmatter: TFrontmatter;
+};
+
+export const getPostBySlug = async (
+  slugs: string
+): Promise<PostType<Frontmatter>> => {
   const slug = slugs[0];
   const mdxPath = path.join(process.cwd(), "/contents", `${slug}.mdx`);
-  // console.log("mdxPath", mdxPath);
   const source = fs.readFileSync(mdxPath);
-  // console.log("source", source);
 
   // process.cwd() /Users/lim-yeram/Desktop/yeram/RamiLog/blog
   // mdxPath /Users/lim-yeram/Desktop/yeram/RamiLog/blog/contents/1696291200.mdx
   // source <Buffer >
 
-  const { content, frontmatter } = await compileMDX({
-    source: source,
-    options: { parseFrontmatter: true },
-    // compiledSource: "",
+  // Serialize the MDX content and parse the frontmatter
+  const serialized = await serialize(source, {
+    parseFrontmatter: true,
   });
 
-  return { content, frontmatter };
-};
+  // const content = mdxContent.content;
+  const frontmatter = serialized.frontmatter as Frontmatter;
 
-const getData = async (slugs: string) => {
-  const mdxSource = await getPostBySlug(slugs);
-
-  return mdxSource;
+  return { serialized, frontmatter };
 };
 
 const Post = async ({ params }) => {
-  const mdxSource = await getData(params.slugs);
+  const { serialized, frontmatter } = await getPostBySlug(params.slugs);
+  const dateString = new Date(frontmatter.date).toLocaleDateString();
+
   return (
     <section>
-      <div>{mdxSource.content}</div>
+      <div>
+        <h1>{frontmatter.title}</h1>
+        <div>
+          <div>{dateString}</div>
+        </div>
+      </div>
     </section>
   );
 };
