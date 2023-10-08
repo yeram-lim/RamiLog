@@ -3,6 +3,7 @@ import fs from "fs";
 import { serialize } from "next-mdx-remote/serialize";
 import { type MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MdxContent } from "../../../../components/MdxContent";
+import remarkGfm from "remark-gfm";
 
 type Frontmatter = {
   title: string;
@@ -28,6 +29,9 @@ export const getPostBySlug = async (
   // Serialize the MDX content and parse the frontmatter
   const serialized = await serialize(source, {
     parseFrontmatter: true,
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+    },
   });
 
   const frontmatter = serialized.frontmatter as Frontmatter;
