@@ -30,7 +30,6 @@ export const getPostBySlug = async (
     parseFrontmatter: true,
   });
 
-  // const content = mdxContent.content;
   const frontmatter = serialized.frontmatter as Frontmatter;
 
   return { serialized, frontmatter };
