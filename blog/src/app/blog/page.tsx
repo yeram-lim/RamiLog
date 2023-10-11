@@ -2,7 +2,7 @@ import React from "react";
 import BlogPage from "../../../components/blog/BlogPage";
 
 const BlogAllPage = async () => {
-  return <BlogPage pickedTag={"All"}></BlogPage>;
+  return <BlogPage pickedTag={"ALL"}></BlogPage>;
 };
 
 export default BlogAllPage;
