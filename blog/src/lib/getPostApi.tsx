@@ -68,8 +68,26 @@ export const getAllPost = async () => {
       parseFrontmatter: true,
     });
     const frontmatter = serialized.frontmatter as Frontmatter;
-    // const tagList = frontmatter.tags.split(",");
     postInfoList.push(frontmatter);
+  }
+  return postInfoList;
+};
+
+export const getPostsByTag = async (tag) => {
+  const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
+  const postPathList: string[] = sync(`${POSTS_PATH}/**/*.mdx`);
+
+  const postInfoList = [];
+  for (let i = 0; i < postPathList.length; i++) {
+    const source = fs.readFileSync(postPathList[i]);
+    const serialized = await serialize(source, {
+      parseFrontmatter: true,
+    });
+    const frontmatter = serialized.frontmatter as Frontmatter;
+    const postTagList = frontmatter.tags.split(",");
+    if (postTagList.includes(tag)) {
+      postInfoList.push(frontmatter);
+    }
   }
   return postInfoList;
 };

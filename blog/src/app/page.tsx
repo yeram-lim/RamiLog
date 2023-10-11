@@ -7,7 +7,7 @@ export default function Home() {
       <section>
         <h1>Blog.</h1>
         <div>
-          <Post imgSrc={""} title={"첫 게시물"} />
+          <Post imgSrc={""} title={"첫 게시물"} link={undefined} />
         </div>
       </section>
       <section></section>

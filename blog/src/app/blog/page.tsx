@@ -1,27 +1,8 @@
-import { getAllPost } from "@/lib/getPostApi";
 import React from "react";
-import Post from "../../../components/Post";
+import BlogPage from "../../../components/blog/BlogPage";
 
-const BlogPage = async () => {
-  const posts = await getAllPost();
-  return (
-    <>
-      <section>BlogPage</section>
-      {posts && (
-        <section className={`grid grid-flow-row`}>
-          {posts.map((post) => {
-            return (
-              <Post
-                imgSrc={null}
-                title={post.title}
-                link={`/post/${post.date}`}
-              ></Post>
-            );
-          })}
-        </section>
-      )}
-    </>
-  );
+const BlogAllPage = async () => {
+  return <BlogPage pickedTag={"All"}></BlogPage>;
 };
 
-export default BlogPage;
+export default BlogAllPage;
