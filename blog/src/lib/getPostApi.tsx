@@ -24,9 +24,8 @@ type PostType<TFrontmatter> = {
 const BASE_PATH = "/contents";
 
 export const getPostBySlug = async (
-  slugs: string
+  slug: string
 ): Promise<PostType<Frontmatter>> => {
-  const slug = slugs[0];
   const mdxPath = path.join(process.cwd(), BASE_PATH, `${slug}.mdx`);
   const source = fs.readFileSync(mdxPath);
   // process.cwd() /Users/lim-yeram/Desktop/yeram/RamiLog/blog
