@@ -90,3 +90,22 @@ export const getPostsByTag = async (tag) => {
   }
   return postInfoList;
 };
+
+export const getLastestPosts = async () => {
+  const POSTS_PATH = path.join(process.cwd(), BASE_PATH);
+  const postPathList: string[] = sync(`${POSTS_PATH}/**/*.mdx`);
+
+  const postInfoList = [];
+  for (let i = 1; i < 4; i++) {
+    const postPath = postPathList[postPathList.length - i];
+    console.log(postPath, postPathList);
+    const source = fs.readFileSync(postPath);
+    const serialized = await serialize(source, {
+      parseFrontmatter: true,
+    });
+    const frontmatter = serialized.frontmatter as Frontmatter;
+
+    postInfoList.push(frontmatter);
+  }
+  return postInfoList;
+};
