@@ -8,9 +8,8 @@ const PostList = ({ posts }: { posts: PostType[] }) => {
       {posts.map((post) => {
         return (
           <Post
-            key={post.title}
-            imgSrc={null}
-            title={post.title}
+            key={`${post.date}-${post.title}`}
+            post={post}
             link={`/post/${post.date}`}
           ></Post>
         );

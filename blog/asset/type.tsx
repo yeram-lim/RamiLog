@@ -6,5 +6,6 @@ export interface Post {
   title: string;
   date: string;
   description: string;
-  tags: PostTag[];
+  tags: string;
+  thumbnail: string;
 }
