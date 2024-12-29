@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Post from "../../components/Post";
+import PostCard from "../../components/PostCard";
 import { getLastestPosts } from "@/lib/getPostApi";
 
 export default async function Home() {
@@ -11,7 +11,11 @@ export default async function Home() {
         <h1>Blog.</h1>
         <div className={`flex`}>
           {posts.map((post) => (
-            <Post key={post.title} post={post} link={`/post/${post.date}`} />
+            <PostCard
+              key={post.title}
+              post={post}
+              link={`/post/${post.date}`}
+            />
           ))}
         </div>
       </section>

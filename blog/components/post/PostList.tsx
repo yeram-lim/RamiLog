@@ -1,5 +1,5 @@
 import React from "react";
-import Post from "../Post";
+import PostCard from "../PostCard";
 import { Post as PostType } from "../../asset/type";
 
 const PostList = ({ posts }: { posts: PostType[] }) => {
@@ -7,11 +7,11 @@ const PostList = ({ posts }: { posts: PostType[] }) => {
     <section className={`flex justify-between`}>
       {posts.map((post) => {
         return (
-          <Post
+          <PostCard
             key={`${post.date}-${post.title}`}
             post={post}
             link={`/post/${post.date}`}
-          ></Post>
+          ></PostCard>
         );
       })}
     </section>
