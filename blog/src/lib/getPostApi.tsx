@@ -14,6 +14,7 @@ type Frontmatter = {
   title: string;
   date: Date;
   tags: string;
+  thumbnail: string;
 };
 
 type PostType<TFrontmatter> = {
