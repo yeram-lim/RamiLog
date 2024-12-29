@@ -9,9 +9,9 @@ const navlinks: { title: string; link: string }[] = [
   { title: "TimeLine", link: "/time-line" },
 ];
 
-const MainNav = () => {
+const Gnb = () => {
   return (
-    <nav className="flex justify-between py-2 px-8 h-16 items-center bg-pink-100">
+    <nav className="flex justify-between py-2 px-8 h-16 items-center border-b border-solid">
       <div className="flex gap-6 items-center">
         {navlinks.map((nav) => (
           <Link href={nav.link} key={nav.title}>
@@ -33,4 +33,4 @@ const MainNav = () => {
   );
 };
 
-export default MainNav;
+export default Gnb;
