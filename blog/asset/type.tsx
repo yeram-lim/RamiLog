@@ -1,2 +1,3 @@
-export type TagType = "ALL" | "FrontEnd" | "Algorithm" | "Project";
-export type TagInfoType = { tagName: TagType; link: string };
+import { PostTag } from "./enum";
+
+export type TagInfoType = { tagName: PostTag | "ALL"; link: string };
