@@ -11,12 +11,7 @@ export default async function Home() {
         <h1>Blog.</h1>
         <div className={`flex`}>
           {posts.map((post) => (
-            <Post
-              key={post.title}
-              imgSrc={""}
-              title={post.title}
-              link={`/post/${post.date}`}
-            />
+            <Post key={post.title} post={post} link={`/post/${post.date}`} />
           ))}
         </div>
       </section>
