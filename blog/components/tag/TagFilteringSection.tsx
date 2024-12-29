@@ -4,17 +4,21 @@ import { TagInfoType } from "../../asset/type";
 import { PostTag } from "../../asset/enum";
 import { useRouter } from "next/navigation";
 
-const tagList: TagInfoType[] = [
-  { tagName: "ALL", link: "/blog" },
-  { tagName: PostTag.FRONT_END, link: `/blog/${PostTag.FRONT_END}` },
-  { tagName: PostTag.ALGORITHM, link: `/blog/${PostTag.ALGORITHM}` },
-  { tagName: PostTag.PROJECT, link: `/blog/${PostTag.PROJECT}` },
-];
+const tagList: TagInfoType[] = [{ tagName: "ALL", link: "/blog" }];
+Object.keys(PostTag).map((tagKey: PostTag) =>
+  tagList.push({
+    tagName: PostTag[tagKey],
+    link: `/blog/${PostTag[tagKey]}`,
+  })
+);
 
 const Tag = ({ tagName, link }: TagInfoType) => {
   const router = useRouter();
   return (
-    <span className={`cursor-pointer`} onClick={() => router.push(link)}>
+    <span
+      className={`cursor-pointer border border-solid rounded-3xl px-2 py-1`}
+      onClick={() => router.push(link)}
+    >
       {tagName}
     </span>
   );
@@ -22,7 +26,7 @@ const Tag = ({ tagName, link }: TagInfoType) => {
 
 const TagFilteringSection = ({ pickedTag }: { pickedTag: PostTag }) => {
   return (
-    <section className={`flex flex-col items-center bg-blue-100`}>
+    <section className={`flex flex-col items-center py-4 gap-4`}>
       <div className={`text-xl`}>{pickedTag ?? "ALL"}</div>
       <div className={`flex flex-col`}>
         <div className={`flex gap-4`}>
