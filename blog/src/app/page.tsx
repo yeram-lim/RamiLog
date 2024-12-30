@@ -8,8 +8,8 @@ export default async function Home() {
   return (
     <>
       <section>
-        <h1>Blog.</h1>
-        <div className={`flex`}>
+        <h1 className="text-xl my-4">Blog.</h1>
+        <div className={`flex gap-4`}>
           {posts.map((post) => (
             <PostCard
               key={post.title}

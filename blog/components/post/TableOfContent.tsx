@@ -36,7 +36,6 @@ export const getIntersectionObserver = (
         (direction === "down" && !entry.isIntersecting) ||
         (direction === "up" && entry.isIntersecting)
       ) {
-        console.log("🍎🍎", entry);
         setState(entry.target.id);
       }
     });
@@ -45,17 +44,19 @@ export const getIntersectionObserver = (
   return observer;
 };
 
+type HeadingNodeName = "H1" | "H2" | "H3";
+
 const TableOfContent = () => {
   const [currentId, setCurrentId] = useState<string>("");
   const [headingEls, setHeadingEls] = useState<
-    { nodeName: "H1" | "H2" | "H3"; el: Element }[]
+    { nodeName: HeadingNodeName; el: Element }[]
   >([]);
 
   useEffect(() => {
     const observer = getIntersectionObserver(setCurrentId);
     const headingElements = Array.from(
       document.querySelectorAll("h1, h2, h3")
-    ).map((el) => ({ nodeName: el.nodeName, el: el }));
+    ).map((el) => ({ nodeName: el.nodeName as HeadingNodeName, el: el }));
     setHeadingEls(headingElements);
 
     headingElements.map((header) => {

@@ -5,8 +5,8 @@ import React from "react";
 const navlinks: { title: string; link: string }[] = [
   { title: "Home", link: "/" },
   { title: "Blog", link: "/blog" },
-  { title: "AboutMe", link: "/about-me" },
-  { title: "TimeLine", link: "/time-line" },
+  // { title: "AboutMe", link: "/about-me" },
+  // { title: "TimeLine", link: "/time-line" },
 ];
 
 const Gnb = () => {
