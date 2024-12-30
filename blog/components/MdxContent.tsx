@@ -28,7 +28,7 @@ const MdxComponents = {
 
 export function MdxContent({ source }: MdxContentProps) {
   return (
-    <div className={`prose prose-h1:underline`}>
+    <div className={`prose`}>
       <MDXRemote {...source} components={MdxComponents} />
     </div>
   );
