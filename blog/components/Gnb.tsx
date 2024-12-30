@@ -11,7 +11,7 @@ const navlinks: { title: string; link: string }[] = [
 
 const Gnb = () => {
   return (
-    <nav className="flex justify-between py-2 px-8 h-16 items-center border-b border-solid">
+    <nav className="sticky top-0 bg-white flex justify-between py-2 px-8 h-16 items-center border-b border-solid">
       <div className="flex gap-6 items-center">
         {navlinks.map((nav) => (
           <Link href={nav.link} key={nav.title}>
