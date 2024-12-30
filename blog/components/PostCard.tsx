@@ -11,7 +11,7 @@ const Post = ({ post, link }: { post: PostType; link: string }) => {
 
   return (
     <div
-      className=" shadow-lg flex flex-col w-[30%] bg-blue-200 rounded-xl h-[22rem] cursor-pointer"
+      className="shadow-lg flex flex-col max-w-full w-[18rem] bg-blue-200 rounded-xl h-[22rem] cursor-pointer"
       onClick={() => router.push(link)}
     >
       <div className={`h-[60%] relative`}>
